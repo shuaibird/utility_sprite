@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SPRITE</title>
+  <link rel="stylesheet" type="text/css" href="sprite.css">
+</head>
+
+<style>
+  body {
+    background: #ddd;
+  }
+  .container {
+    width: 100%;
+  }
+  h1 {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    color:  #3287c1;
+  }
+  p {
+    line-height: 2;
+    margin-left: 40px;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  code {
+    color: #ee00b1;
+    font-size: 1.3em;
+    margin-bottom: 20px;
+  }
+  .icon-wrapper {
+    display: inline-block;
+    margin: 15px 40px;
+    border: 4px solid #ccc;
+    padding: 10px 20px;
+    transition: .2s all;
+  }
+  .icon-wrapper:hover {
+    border-color: #333;
+    cursor: pointer;
+  }
+  input {
+    width: 5px;
+    opacity: 0;
+  }
+</style>
+
+<body>
+
+  <div class="container">
+    <h1>UI Elements Collection</h1>
+    <p>点击element复制</p>
+    <p>Usage Example:<br><code>&lt;div class="gizwits-icon icon-develop_ic_ios" &gt;&lt;/div&gt;</code></p>
+  </div>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
+  
+  <!-- ajax获取 icon class 数据 -->
+  <script>
+    +function($) {
+      $(function() {
+        $.get('/images', function(data) {
+          var tempDom = ''
+          data.forEach(function(item) {
+            var className = 'gizwits-icon icon-' + item
+            tempDom += '<div class="icon-wrapper" data-copytarget="#' + item + '"><div class="'+ className + '"></div><input id="' + item + '" value="' + className + '"></div>'
+          })
+          $('.container').append($(tempDom))
+          $('.icon-wrapper').click(copy)
+        })
+      })
+
+      function copy() {
+        var copytarget = $(this).data().copytarget
+        var input = (copytarget ? document.querySelector(copytarget) : null)
+        if (input && input.select) {
+          input.select()
+          try {
+            document.execCommand('copy')
+            input.blur()
+            notify(copytarget.substr(1) + ' COPIED', 'success')
+          } catch (err) {
+            notify('浏览器不支持，请使用chrome', 'error')
+          }
+        }
+      }
+
+      function notify(text, status) {
+        if (!$.notify) {
+          alert(text)
+          return
+        }
+        var options = {
+          position: 'top center',
+          showDuration: 100,
+          hideDuration: 100,
+          className: status
+        }
+        $.notify(text, options)
+      }
+
+    }(jQuery)
+
+</script>
+</body>
+</html>
