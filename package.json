@@ -1,15 +1,15 @@
 {
-  "name": "sprite_rocks",
-  "version": "1.0.0",
+  "name": "sprite_demo",
+  "version": "2.0.0",
   "description": "sprite utility",
   "main": "express.js",
   "scripts": {
     "start": "npm run sprite && node express",
-    "sprite": "gulp generateSprite && gulp addIconClass && gulp moveSprite && gulp minifyCSS && gulp removeUnminifiedCSS"
+    "sprite": "gulp generateSprite && gulp addIconHover && gulp addIconClass && gulp moveSprite && gulp minifyCSS && gulp removeUnminifiedCSS"
   },
   "repository": {
     "type": "git",
-    "url": "git@gitlab.gizwits.com:gizwits-site/gizwits_site.git"
+    "url": "git@github.com:shuaibird/sprite_demo.git"
   },
   "keywords": ["sprite", "express", "gulp", "utility"],
   "author": "Shuaibird",
