@@ -1,4 +1,4 @@
-# sprite
+# Sprite Utility
 ##### 工具说明：自动将UI elements生成sprite
 ```sh
 $ npm install
