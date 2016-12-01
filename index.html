@@ -61,7 +61,7 @@
         $.get('/images', function(data) {
           var tempDom = ''
           data.forEach(function(item) {
-            var className = 'gizwits-icon icon-' + item
+            var className = 'sprite-icon icon-' + item
             tempDom += '<div class="icon-wrapper" data-copytarget="#' + item + '"><div class="'+ className + '"></div><input id="' + item + '" value="' + className + '"></div>'
           })
           $('.container').append($(tempDom))
